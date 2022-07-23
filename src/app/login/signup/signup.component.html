@@ -1,0 +1,20 @@
+<form [formGroup]="frmValue" (ngSubmit)="signup()">
+    <table>
+    <tr>
+    <td>Contact No:</td> <td><input type="number" placeholder="Contact No." formControlName="contactNo"></td>
+    </tr>
+    <tr>
+    <td>Name:</td><td><input type="text" placeholder="name" formControlName="firstName"></td>
+    </tr>
+   
+    <tr>
+    <td>Gender:</td><td><input type="radio" value="male" name="gender" formControlName="gender">male
+    <input type="radio" value="female" name="gender" formControlName="gender">female</td>
+    </tr>
+   
+    <tr>
+    <td><input type="submit" value="View on Console"></td>
+    </tr>
+    </table>
+    </form>
+   
