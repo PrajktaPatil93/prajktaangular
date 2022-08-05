@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, FormArray  } from '@angular/forms';
+import { GlobalService } from 'src/app/services/global.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -12,7 +13,8 @@ export class SignupComponent implements OnInit {
   firstName:new FormControl(),
   gender: new FormControl(),
    });
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,
+    public globalService:GlobalService) { }
 
   ngOnInit(): void {
     // this.frmValue=this.formBuilder.group({
@@ -26,6 +28,23 @@ export class SignupComponent implements OnInit {
 
   signup(){
     console.log(this.frmValue)
+    if(this.frmValue.valid){
+    var  url=this.globalService.baseUrl+"api/user/savestudent";
+    var data={
+        contact:this.frmValue.value.contactNo,
+        name:this.frmValue.value.firstName,
+        gender:this.frmValue.value.gender,
+      }
+      console.log(data)
+      this.globalService.PostRequest(url,data).subscribe((res:any)=> {
+       console.log(res);
+      },
+      (err:any)=>{
+        console.log(err);
+      })
+    }else{
+      
+    }
   }
 
 }
