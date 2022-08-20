@@ -17,13 +17,22 @@ export class SignupComponent implements OnInit {
     public globalService:GlobalService) { }
 
   ngOnInit(): void {
-    // this.frmValue=this.formBuilder.group({
-    //   regNo:[''],
-    //   fristName:[''],
-    //   gender: [''],
-    //   descipline:[''],
-    //   name: this.formBuilder.array([])
-    //      })
+    var  url=this.globalService.baseUrl+"api/user/getStudentDetail";
+    this.globalService.GetRequest(url).subscribe((res:any)=> {
+      console.log(res);
+     },
+     (err:any)=>{
+       console.log(err);
+     })
+
+     var  url2=this.globalService.baseUrl+"api/user/updateStudentDetail";
+     let data = { name:"prajkta",contact : 8797979797}
+    this.globalService.PostRequest(url2,data).subscribe((res:any)=> {
+      console.log(res);
+     },
+     (err:any)=>{
+       console.log(err);
+     })
   }
 
   signup(){
